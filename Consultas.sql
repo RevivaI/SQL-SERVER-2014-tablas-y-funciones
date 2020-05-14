@@ -17,10 +17,12 @@ BEGIN
 		      Pedido.codigo_pedido    AS codigopedido,
 			  Pedido.fecha_ingreso    AS fechaingreso,
 			  Pedido.direccion_envio  AS direcciondeenvio,
-			  Pedido.fecha_pago       AS fechadepago
+			  Pedido.fecha_pago       AS fechadepago,
+              Metodo_entrega.codigo_metodo_entrega AS metododeentrega		   
 		   FROM 
 			  Pedido,
-			  Cliente		    
+			  Cliente,
+			  Metodo_entrega		    
 	     END
 	   ELSE
 	     BEGIN
@@ -30,7 +32,7 @@ BEGIN
    ELSE
      BEGIN
 	   SET @AUX = -1;
-     END
+ 	 END
   RETURN @AUX;
 END
 GO
