@@ -36,7 +36,7 @@ BEGIN
   RETURN @AUX;
 END
 GO
-
+----------------------------------------------------------------
 IF OBJECT_ID ('buscarporpedido','P') IS NOT NULL
    DROP PROCEDURE buscarporpedido;
 GO
@@ -70,7 +70,7 @@ BEGIN
   RETURN @AUX;
 END
 GO
-
+-----------------------------------------------------------------
 IF OBJECT_ID ('listarpedidosentreIngreso','P') IS NOT NULL
    DROP PROCEDURE listarpedidosentreIngreso;
 GO
@@ -84,7 +84,7 @@ BEGIN
   WHERE fecha_ingreso BETWEEN @fecha_inicio AND @fecha_fin;
 END
 GO
-
+---------------------------------------------------------------
 IF OBJECT_ID ('buscarporproducto','P') IS NOT NULL
    DROP PROCEDURE buscarporproducto;
 GO
@@ -107,7 +107,7 @@ BEGIN
   RETURN @AUX;
 END
 GO
-
+-----------------------------------------------------------------
 IF OBJECT_ID ('ganaciasentre','P') IS NOT NULL
    DROP PROCEDURE gananciasentre;
 GO
