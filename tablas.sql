@@ -36,8 +36,8 @@ Create Table Tipo_Prenda(
 
 Create Table Producto(
   codigo_producto    VARCHAR(10) PRIMARY KEY,
-  codigo_tipo_prenda VARCHAR(10), --fk
-  codigo_talla       VARCHAR(10),   --fk
+  codigo_tipo_prenda VARCHAR(10), 
+  codigo_talla       VARCHAR(10),  
   precio_producto    INT NOT NULL,
   costo_produccion   INT NOT NULL,
   FOREIGN KEY    (codigo_talla)    REFERENCES Talla(codigo_talla),
