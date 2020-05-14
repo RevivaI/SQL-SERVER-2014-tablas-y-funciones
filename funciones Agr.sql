@@ -1,19 +1,33 @@
+IF OBJECT_ID ('agregarpedidoacliente','P') IS NOT NULL
+   DROP PROCEDURE agregarpedidoacliente;
 GO
-Create function agregarpedidoacliente (@CodPed Int, @NombIg VARCHAR(25)) RETURNS INT
+CREATE PROCEDURE agregarpedidoacliente (@CodPed Int, @NombIg VARCHAR(25)) 
 AS
 BEGIN
+  DECLARE @AUX INT;
   IF EXISTS (SELECT * FROM Cliente WHERE nombre_instagram = @NombIg) 
+    BEGIN
     IF EXISTS (SELECT * FROM Pedido WHERE codigo_pedido = @CodPed) 
-	  IF EXISTS (SELECT * FROM Cliente_Pedido WHERE codigo_pedido = @CodPed AND nombre_instagram = @NombIg) 
-	      return -1;
-      ELSE
-	      INSERT INTO Cliente_Pedido VALUES(@NombIg,@CodPed);
-	return 1;
-	  end
-	  return -2;	
-  end 
-  else 
-   return -3;
-  end
+	   BEGIN
+	      IF EXISTS (SELECT * FROM Cliente_Pedido WHERE codigo_pedido = @CodPed AND nombre_instagram = @NombIg) 
+		     BEGIN --identifica si ya existe el pedido para el cliente
+	            SET @AUX = -1; 
+			 END 
+	      ELSE
+		     BEGIN 
+			    INSERT INTO Cliente_Pedido VALUES(@NombIg,@CodPed);
+		SET @AUX = 1;
+			  END
+	   END
+	ELSE 
+	   BEGIN
+	      SET @AUX = -2;
+	   END
+    END
+  ELSE
+     BEGIN
+        SET @AUX = -3; 
+     END
+  RETURN @AUX;
 END
 GO
