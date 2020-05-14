@@ -37,6 +37,7 @@ BEGIN
 END
 GO
 ----------------------------------------------------------------
+
 IF OBJECT_ID ('buscarporpedido','P') IS NOT NULL
    DROP PROCEDURE buscarporpedido;
 GO
@@ -71,6 +72,7 @@ BEGIN
 END
 GO
 -----------------------------------------------------------------
+
 IF OBJECT_ID ('listarpedidosentreIngreso','P') IS NOT NULL
    DROP PROCEDURE listarpedidosentreIngreso;
 GO
@@ -85,6 +87,7 @@ BEGIN
 END
 GO
 ---------------------------------------------------------------
+
 IF OBJECT_ID ('buscarporproducto','P') IS NOT NULL
    DROP PROCEDURE buscarporproducto;
 GO
@@ -108,6 +111,7 @@ BEGIN
 END
 GO
 -----------------------------------------------------------------
+
 IF OBJECT_ID ('ganaciasentre','P') IS NOT NULL
    DROP PROCEDURE gananciasentre;
 GO
@@ -125,3 +129,21 @@ BEGIN
   RETURN @ganancia;
 END
 GO
+----------------------------------------------------------------
+
+IF OBJECT_ID ('costoproduccionentre','P') IS NOT NULL
+   DROP PROCEDURE costoproduccionentre;
+GO
+CREATE PROCEDURE costoproduccionentre(@fecha_inicio DATETIME, @fecha_fin DATETIME)
+AS
+BEGIN
+  DECLARE @costoproduccion INT  
+   SET @costoproduccion = (SELECT SUM(Producto.costo_produccion*Detalle_Pedido.cantidad)
+					FROM 
+                      Detalle_Pedido,
+                      Producto,
+					  Pedido
+                    WHERE Pedido.fecha_ingreso BETWEEN @fecha_inicio AND @fecha_fin);
+
+  RETURN @costoproduccion;
+END
