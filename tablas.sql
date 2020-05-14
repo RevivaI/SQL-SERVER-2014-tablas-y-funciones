@@ -28,16 +28,16 @@ Create Table Talla(
 Create Table Tipo_Prenda(
   codigo_tipo_prenda      VARCHAR(10) PRIMARY KEY,
   descripcion_tipo_prenda VARCHAR(30),
-  codigo_tipo_tela        VARCHAR(10), 
-  codigo_color            VARCHAR(10), 
+  codigo_tipo_tela        VARCHAR(10), --fk
+  codigo_color            VARCHAR(10), --fk
   FOREIGN KEY (codigo_tipo_tela) REFERENCES Tipo_Tela(codigo_tipo_tela),
   FOREIGN KEY   (codigo_color)   REFERENCES Color(codigo_color)
 );
 
 Create Table Producto(
   codigo_producto    VARCHAR(10) PRIMARY KEY,
-  codigo_tipo_prenda VARCHAR(10), 
-  codigo_talla       VARCHAR(10),  
+  codigo_tipo_prenda VARCHAR(10), --fk
+  codigo_talla       VARCHAR(10),   --fk
   precio_producto    INT NOT NULL,
   costo_produccion   INT NOT NULL,
   FOREIGN KEY    (codigo_talla)    REFERENCES Talla(codigo_talla),
@@ -55,7 +55,7 @@ Create Table Metodo_entrega(
 );
 
 Create Table Pedido(
-  codigo_pedido INT PRIMARY KEY IDENTITY(1,1),  --IDENTITY IDENTIFICA COMO CODIGO NUMEROS ENTEROS DE 1 EN 1 A MEDIDA QUE SE AGREGAN NUEVOS DATOS
+  codigo_pedido VARCHAR(10) PRIMARY KEY,
   nombre_instagram VARCHAR(25),
   codigo_metodo_entrega VARCHAR(10),
   codigo_estado_pedido VARCHAR(10),
@@ -70,7 +70,7 @@ Create Table Pedido(
 Create Table Detalle_Pedido(
   codigo_detalle_pedido VARCHAR(10) PRIMARY KEY,
   codigo_producto       VARCHAR(10),
-  codigo_pedido         INT,
+  codigo_pedido         VARCHAR(10),
   cantidad              INT NOT NULL,
   FOREIGN KEY (codigo_producto) REFERENCES Producto(codigo_producto),
   FOREIGN KEY (codigo_pedido)   REFERENCES Pedido(codigo_pedido)
