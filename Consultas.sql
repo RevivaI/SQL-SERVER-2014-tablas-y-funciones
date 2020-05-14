@@ -30,6 +30,7 @@ BEGIN
    ELSE
      BEGIN
 	   SET @AUX = -1;
- 	 END
+     END
+  RETURN @AUX;
 END
 GO
