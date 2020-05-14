@@ -10,7 +10,7 @@ BEGIN
     IF EXISTS (SELECT * FROM Pedido WHERE codigo_pedido = @CodPed) 
 	   BEGIN
 	      IF EXISTS (SELECT * FROM Cliente_Pedido WHERE codigo_pedido = @CodPed AND nombre_instagram = @NombIg) 
-		     BEGIN --identifica si ya existe el pedido para el cliente
+		     BEGIN 
 	            SET @AUX = -1; 
 			 END 
 	      ELSE
