@@ -1,7 +1,7 @@
 IF OBJECT_ID ('agregarpedidoacliente','P') IS NOT NULL
    DROP PROCEDURE agregarpedidoacliente;
 GO
-CREATE PROCEDURE agregarpedidoacliente (@CodPed Int, @NombIg VARCHAR(25)) 
+CREATE PROCEDURE agregarpedidoacliente (@CodPed VARCHAR(10), @NombIg VARCHAR(25)) 
 AS
 BEGIN
   DECLARE @AUX INT;
