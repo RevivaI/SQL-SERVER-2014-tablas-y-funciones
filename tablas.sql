@@ -28,8 +28,8 @@ Create Table Talla(
 Create Table Tipo_Prenda(
   codigo_tipo_prenda      VARCHAR(10) PRIMARY KEY,
   descripcion_tipo_prenda VARCHAR(30),
-  codigo_tipo_tela        VARCHAR(10), --fk
-  codigo_color            VARCHAR(10), --fk
+  codigo_tipo_tela        VARCHAR(10), 
+  codigo_color            VARCHAR(10), 
   FOREIGN KEY (codigo_tipo_tela) REFERENCES Tipo_Tela(codigo_tipo_tela),
   FOREIGN KEY   (codigo_color)   REFERENCES Color(codigo_color)
 );
